@@ -1,0 +1,133 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "jp.co.kiganix.android.example.myapplication"
+        minSdk 23
+        targetSdk 32
+        versionCode 1
+        versionName "1.0.0-SNAPSHOT"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+
+    flavorDimensions 'dependentType'
+    productFlavors {
+        noAds {
+            dimension 'dependentType'
+        }
+        minimumFluctSdk {
+            dimension 'dependentType'
+        }
+        withFluctRtbSdk {
+            dimension 'dependentType'
+        }
+        fullFluctSdkWithoutAdnw {
+            dimension 'dependentType'
+        }
+        fullFluctSdk {
+            dimension 'dependentType'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    // region minimumFluctSdk
+    minimumFluctSdkImplementation 'jp.fluct:FluctSDK:8.12.1'
+    // endregion
+
+    // region withFluctRtbSdk
+    withFluctRtbSdkImplementation 'jp.fluct:FluctSDK:8.12.1'
+    withFluctRtbSdkImplementation 'jp.fluct.fluctsdk:fullscreen-ads:8.12.1'
+    // endregion
+
+    // region fullFluctSdkWithoutAdnw
+    fullFluctSdkWithoutAdnwImplementation 'jp.fluct:FluctSDK:8.12.1'
+    fullFluctSdkWithoutAdnwImplementation 'jp.fluct.fluctsdk:fullscreen-ads:8.12.1'
+
+    fullFluctSdkWithoutAdnwImplementation('jp.fluct.mediation:rewardedvideo-mediation-applovin:8.12.1') {
+        exclude group: 'com.applovin', module: 'applovin-sdk'
+    }
+
+    fullFluctSdkWithoutAdnwImplementation('jp.fluct.mediation:videointerstitial-mediation-maio:8.12.1') {
+        exclude group: 'com.maio', module: 'android-sdk'
+    }
+    fullFluctSdkWithoutAdnwImplementation('jp.fluct.mediation:rewardedvideo-mediation-maio:8.12.1') {
+        exclude group: 'com.maio', module: 'android-sdk'
+    }
+
+    fullFluctSdkWithoutAdnwImplementation('jp.fluct.mediation:rewardedvideo-mediation-nend:8.12.1') {
+        exclude group: 'net.nend.android', module: 'nend-sdk'
+    }
+
+    fullFluctSdkWithoutAdnwImplementation('jp.fluct.mediation:videointerstitial-mediation-unityads:8.12.1') {
+        exclude group: 'com.unity3d.ads', module: 'unity-ads'
+    }
+    fullFluctSdkWithoutAdnwImplementation('jp.fluct.mediation:rewardedvideo-mediation-unityads:8.12.1') {
+        exclude group: 'com.unity3d.ads', module: 'unity-ads'
+    }
+
+    fullFluctSdkWithoutAdnwImplementation('jp.fluct.mediation:videointerstitial-mediation-adcolony:8.12.1') {
+        exclude group: 'com.adcolony', module: 'sdk'
+    }
+    fullFluctSdkWithoutAdnwImplementation('jp.fluct.mediation:rewardedvideo-mediation-adcolony:8.12.1') {
+        exclude group: 'com.adcolony', module: 'sdk'
+    }
+
+    fullFluctSdkWithoutAdnwImplementation('jp.fluct.mediation:videointerstitial-mediation-tapjoy:8.12.1') {
+        exclude group: 'com.tapjoy', module: 'tapjoy-android-sdk'
+    }
+    fullFluctSdkWithoutAdnwImplementation('jp.fluct.mediation:rewardedvideo-mediation-tapjoy:8.12.1') {
+        exclude group: 'com.tapjoy', module: 'tapjoy-android-sdk'
+    }
+
+    fullFluctSdkWithoutAdnwImplementation('jp.fluct.mediation:rewardedvideo-mediation-five:8.12.1') {
+        exclude group: 'com.linecorp.adsnetwork', module: 'fivead'
+    }
+    fullFluctSdkWithoutAdnwImplementation('jp.fluct.mediation:rewardedvideo-mediation-pangle:8.12.1') {
+        exclude group: 'com.linecorp.adsnetwork', module: 'fivead'
+    }
+    // endregion
+
+    // region fullFluctSdk
+    fullFluctSdkImplementation 'jp.fluct:FluctSDK:8.12.1'
+    fullFluctSdkImplementation 'jp.fluct.fluctsdk:fullscreen-ads:8.12.1'
+    fullFluctSdkImplementation 'jp.fluct.mediation:rewardedvideo-mediation-applovin:8.12.1'
+    fullFluctSdkImplementation 'jp.fluct.mediation:videointerstitial-mediation-maio:8.12.1'
+    fullFluctSdkImplementation 'jp.fluct.mediation:rewardedvideo-mediation-maio:8.12.1'
+    fullFluctSdkImplementation 'jp.fluct.mediation:rewardedvideo-mediation-nend:8.12.1'
+    fullFluctSdkImplementation 'jp.fluct.mediation:videointerstitial-mediation-unityads:8.12.1'
+    fullFluctSdkImplementation 'jp.fluct.mediation:rewardedvideo-mediation-unityads:8.12.1'
+    fullFluctSdkImplementation 'jp.fluct.mediation:videointerstitial-mediation-adcolony:8.12.1'
+    fullFluctSdkImplementation 'jp.fluct.mediation:rewardedvideo-mediation-adcolony:8.12.1'
+    fullFluctSdkImplementation 'jp.fluct.mediation:videointerstitial-mediation-tapjoy:8.12.1'
+    fullFluctSdkImplementation 'jp.fluct.mediation:rewardedvideo-mediation-tapjoy:8.12.1'
+    fullFluctSdkImplementation 'jp.fluct.mediation:rewardedvideo-mediation-five:8.12.1'
+    fullFluctSdkImplementation 'jp.fluct.mediation:rewardedvideo-mediation-pangle:8.12.1'
+    // endregion
+}
